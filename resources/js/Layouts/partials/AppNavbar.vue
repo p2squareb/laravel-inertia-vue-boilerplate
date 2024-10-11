@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 </script>
 
 <template>
@@ -11,8 +11,8 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
             <div class='items-center md:flex'>
                 <p class='text-sm font-medium text-gray-900 md:my-0 dark:text-white'>
                     <span class='bg-blue-100 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 hidden md:inline'>New</span>
-                    We have launched Flowbite Blocks featuring over 450+ website sections!
-                    <a href="/blocks/" class='inline-flex items-center ml-2 text-sm font-medium text-blue-600 md:ml-2 dark:text-blue-500 hover:underline'>
+                    짧은 공지 내용
+                    <a href="/" class='inline-flex items-center ml-2 text-sm font-medium text-blue-600 md:ml-2 dark:text-blue-500 hover:underline'>
                         Check it out
                         <svg class="w-3 h-3 ml-1.5 text-blue-600 dark:text-blue-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -28,10 +28,7 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
                     <svg id="toggleSidebarMobileClose" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
                 <div class="flex items-center justify-between">
-                    <a href="/" class="flex">
-                        <img src="/images/logo.png" class="h-8 mr-3" :alt="appName" />
-                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{{appName}}</span>
-                    </a>
+                    <Link href="/" class="flex"><ApplicationLogo /></Link>
                 </div>
                 <div id="docsearch" class="hidden md:flex ml-6 xl:ml-20"></div>
             </div>
@@ -39,22 +36,13 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
             <div class="flex items-center">
                 <ul id="flowbiteMenu" class="flex-col hidden pt-6 lg:flex-row lg:self-center lg:py-0 lg:flex">
                     <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-                        <a href="" class="text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">Quickstart</a>
+                        <a href="" class="text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">커뮤니티</a>
                     </li>
-                    <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-                        <a href="" class="text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">Blocks</a>
+                    <li v-if="$page.props.auth.user" class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
+                        <Link :href="route('logout')" method="post">로그아웃</Link>
                     </li>
-                    <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-                        <a href="" class="text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">Figma</a>
-                    </li>
-                    <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-                        <a href="" class="text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">Icons</a>
-                    </li>
-                    <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-                        <a href="" class="text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">Blog</a>
-                    </li>
-                    <li class="hidden mb-3 lg:px-2 xl:px-2 lg:mb-0 xl:block">
-                        <a href="" class="text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">Pro version</a>
+                    <li v-else class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
+                        <Link :href="route('login')">로그인</Link>
                     </li>
                 </ul>
                 <div id="docsearch-mobile" class="sm:hidden"></div>
@@ -68,36 +56,7 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
                     View on Github
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
-                <a href="https://discord.gg/4eeurUVvTy" data-tooltip-target="tooltip-discord-2" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-10 h-10 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >
-                    <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
-                        <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
-                    </svg>
-                    <span class="sr-only">Join Discord community</span>
-                </a>
-                <div id="tooltip-discord-2" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-                    Join community on Discord
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-                <a href="https://www.youtube.com/channel/UC_Ms4V2kYDsh7F_CSsHyQ6A" data-tooltip-target="tooltip-youtube" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-10 h-10 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >
-                    <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
-                        <path fill-rule="evenodd" d="M19.7 3.037a4.26 4.26 0 0 0-.789-1.964 2.84 2.84 0 0 0-1.984-.84c-2.767-.2-6.926-.2-6.926-.2s-4.157 0-6.928.2a2.836 2.836 0 0 0-1.983.84A4.225 4.225 0 0 0 .3 3.038a30.148 30.148 0 0 0-.2 3.206v1.5c.01 1.071.076 2.142.2 3.206.094.712.363 1.39.784 1.972.604.536 1.38.837 2.187.848 1.583.15 6.731.2 6.731.2s4.161 0 6.928-.2a2.844 2.844 0 0 0 1.985-.84 4.27 4.27 0 0 0 .787-1.965c.124-1.064.19-2.135.2-3.206V6.243a30.672 30.672 0 0 0-.202-3.206ZM8.008 9.59V3.97l5.4 2.819-5.4 2.8Z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="sr-only">Flowbite YouTube</span>
-                </a>
-                <div id="tooltip-youtube" role="tooltip" class="absolute z-10 invisible inline-flex px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-                    Subscribe to YouTube channel
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-                <a href="https://twitter.com/zoltanszogyenyi" data-tooltip-target="tooltip-twitter" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-10 h-10 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >
-                    <svg class="w-4.5 h-4.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M13.8 10.5 20.7 2h-3l-5.3 6.5L7.7 2H1l7.8 11-7.3 9h3l5.7-7 5.1 7H22l-8.2-11.5Zm-2.4 3-1.4-2-5.6-7.9h2.3l4.5 6.3 1.4 2 6 8.5h-2.3l-4.9-7Z"/>
-                    </svg>
-                    <span class="sr-only">Flowbite on Twitter/X</span>
-                </a>
-                <div id="tooltip-twitter" role="tooltip" class="absolute z-10 invisible inline-flex px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
-                    Follow us on Twitter/X
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
+
                 <button id="theme-toggle" data-tooltip-target="tooltip-toggle" type="button" class="text-gray-500 inline-flex items-center justify-center dark:text-gray-400 hover:bg-gray-100 w-10 h-10 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
                     <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                         <path d="M17.8 13.75a1 1 0 0 0-.859-.5A7.488 7.488 0 0 1 10.52 2a1 1 0 0 0 0-.969A1.035 1.035 0 0 0 9.687.5h-.113a9.5 9.5 0 1 0 8.222 14.247 1 1 0 0 0 .004-.997Z"/>

@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
+import {router, useForm} from '@inertiajs/vue3';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
 defineProps<{
     canResetPassword?: boolean;
     status?: string;
+    socialite: string;
 }>();
 
 const form = useForm({
@@ -28,71 +29,50 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Log in" />
-
-        <div v-if="status" class="mb-4 text-sm font-medium text-green-600">
-            {{ status }}
+    <Head title="로그인" />
+    <main>
+        <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900">
+            <Link href="/" class="flex items-center justify-center mb-3 text-2xl font-semibold lg:mb-7 dark:text-white"><ApplicationLogo /></Link>
+            <div class="w-full max-w-md p-6 sm:p-8 bg-white rounded-md shadow dark:bg-gray-800">
+                <form @submit.prevent="submit">
+                    <div>
+                        <InputLabel for="email" value="이메일" class="block mb-2" />
+                        <TextInput type="email" id="email" v-model="form.email" class="block w-full p-[7px]" required placeholder="이메일을 입력해주세요." />
+                        <InputError :message="form.errors.email" />
+                    </div>
+                    <div class="mt-5">
+                        <InputLabel for="password" value="비밀번호" class="block mb-2" />
+                        <TextInput type="password" id="password" v-model="form.password" class="block w-full p-[7px]" required autocomplete="current-password" />
+                        <InputError :message="form.errors.password" />
+                    </div>
+                    <div class="flex items-start mt-5">
+                        <div class="flex items-center h-5">
+                            <Checkbox id="remember" name="remember" v-model:checked="form.remember" />
+                        </div>
+                        <div class="ml-3 text-sm">
+                            <label for="remember" class="font-medium text-gray-900 dark:text-white">로그인 상태 유지</label>
+                        </div>
+                        <Link :href="route('password.request')" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">비밀번호 찾기</Link>
+                    </div>
+                    <PrimaryButton class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :clolr="'blue'" :disabled="form.processing">로그인하기</PrimaryButton>
+                </form>
+                <div v-if="socialite === '1'">
+                    <div class="mt-5 text-sm font-medium text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-500 rounded-md py-3 px-4">
+                        <label class="block mb-3 text-sm font-bold text-gray-900 dark:text-white">SNS 간편 로그인</label>
+                        <div class="flex w-full justify-between">
+                            <a href="/signup/naver?next_page=%2F" class="p-2 sm:p-3 rounded" style="background-color: rgb(30, 200, 0);"><img alt="naver" src="/images/icon/naver-logo.png" class="w-7 h-7"></a>
+                            <a href="/signup/kakao?next_page=%2F" class="p-2 sm:p-3 rounded" style="background-color: rgb(249, 224, 0);"><img alt="kakao" src="/images/icon/kakao-logo.png" class="w-7 h-7"></a>
+                            <a href="/signup/facebook?next_page=%2F" class="p-2 sm:p-3 rounded" style="background-color: rgb(24, 119, 242);"><img alt="facebook" src="/images/icon/facebook-logo.png" class="w-7 h-7"></a>
+                            <a href="/signup/google?next_page=%2F" class="p-2 sm:p-3 rounded" style="background-color: rgb(255, 255, 255); border: 1px solid rgb(228, 229, 237);"><img alt="google" src="/images/icon/google-logo.png" class="w-7 h-7"></a>
+                            <a href="/signup/apple?next_page=%2F" class="p-2 sm:p-3 rounded" style="background-color: rgb(0, 0, 0);"><img alt="apple" src="/images/icon/apple-logo.png" class="w-7 h-7"></a>
+                        </div>
+                    </div>
+                    <button type="button"  class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center text-white bg-red-700 rounded-md hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700">회원가입</button>
+                </div>
+                <div v-else>
+                    <PrimaryButton @click="router.visit(route('register'));" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'">회원가입</PrimaryButton>
+                </div>
+            </div>
         </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="current-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4 block">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ms-2 text-sm text-gray-600"
-                        >Remember me</span
-                    >
-                </label>
-            </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <Link
-                    v-if="canResetPassword"
-                    :href="route('password.request')"
-                    class="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                >
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton
-                    class="ms-4"
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
+    </main>
 </template>
