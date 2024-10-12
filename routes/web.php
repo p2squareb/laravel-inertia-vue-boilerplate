@@ -7,7 +7,7 @@ use Inertia\Inertia;
 
 Route::get('/', function () {
     return Inertia::render('Main');
-});
+})->name('home');
 
 Route::get('/welcome', function () {
     return Inertia::render('Welcome', [

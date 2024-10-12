@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
+
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 </script>
 
@@ -28,15 +30,13 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
                     <svg id="toggleSidebarMobileClose" class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
                 </button>
                 <div class="flex items-center justify-between">
-                    <a href="/" class="flex">
-                        <img src="/images/logo.png" class="h-8 mr-3" :alt="appName" />
-                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{{appName}}</span>
-                    </a>
+                    <Link href="/" class="flex"><ApplicationLogo /></Link>
                 </div>
                 <div id="docsearch" class="hidden md:flex ml-6 xl:ml-20"></div>
             </div>
 
             <div class="flex items-center">
+
                 <ul id="flowbiteMenu" class="flex-col hidden pt-6 lg:flex-row lg:self-center lg:py-0 lg:flex">
                     <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
                         <a href="" class="text-sm font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">Quickstart</a>
@@ -68,7 +68,7 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
                     View on Github
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
-                <a href="https://discord.gg/4eeurUVvTy" data-tooltip-target="tooltip-discord-2" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-10 h-10 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >
+<!--                <a href="https://discord.gg/4eeurUVvTy" data-tooltip-target="tooltip-discord-2" class="hidden sm:inline-flex items-center justify-center text-gray-500 w-10 h-10 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 mr-1" >
                     <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 21 16">
                         <path d="M16.942 1.556a16.3 16.3 0 0 0-4.126-1.3 12.04 12.04 0 0 0-.529 1.1 15.175 15.175 0 0 0-4.573 0 11.585 11.585 0 0 0-.535-1.1 16.274 16.274 0 0 0-4.129 1.3A17.392 17.392 0 0 0 .182 13.218a15.785 15.785 0 0 0 4.963 2.521c.41-.564.773-1.16 1.084-1.785a10.63 10.63 0 0 1-1.706-.83c.143-.106.283-.217.418-.33a11.664 11.664 0 0 0 10.118 0c.137.113.277.224.418.33-.544.328-1.116.606-1.71.832a12.52 12.52 0 0 0 1.084 1.785 16.46 16.46 0 0 0 5.064-2.595 17.286 17.286 0 0 0-2.973-11.59ZM6.678 10.813a1.941 1.941 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.919 1.919 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Zm6.644 0a1.94 1.94 0 0 1-1.8-2.045 1.93 1.93 0 0 1 1.8-2.047 1.918 1.918 0 0 1 1.8 2.047 1.93 1.93 0 0 1-1.8 2.045Z"/>
                     </svg>
@@ -97,8 +97,8 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
                 <div id="tooltip-twitter" role="tooltip" class="absolute z-10 invisible inline-flex px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip">
                     Follow us on Twitter/X
                     <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
-                <button id="theme-toggle" data-tooltip-target="tooltip-toggle" type="button" class="text-gray-500 inline-flex items-center justify-center dark:text-gray-400 hover:bg-gray-100 w-10 h-10 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+                </div>-->
+<!--                <button id="theme-toggle" data-tooltip-target="tooltip-toggle" type="button" class="text-gray-500 inline-flex items-center justify-center dark:text-gray-400 hover:bg-gray-100 w-10 h-10 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
                     <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                         <path d="M17.8 13.75a1 1 0 0 0-.859-.5A7.488 7.488 0 0 1 10.52 2a1 1 0 0 0 0-.969A1.035 1.035 0 0 0 9.687.5h-.113a9.5 9.5 0 1 0 8.222 14.247 1 1 0 0 0 .004-.997Z"/>
                     </svg>
@@ -112,7 +112,29 @@ const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
                     <div class="tooltip-arrow" data-popper-arrow></div>
                 </div>
                 <a href="/pro/#pricing"  class="xl:hidden inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 sm:ml-3">Pricing</a>
-                <a href="/pro/#pricing"  class="hidden xl:inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 sm:ml-3">Pricing & FAQ</a>
+                <a href="/pro/#pricing"  class="hidden xl:inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 sm:ml-3">Pricing & FAQ</a>-->
+
+                <div v-if="$page.props.auth.user" class="flex items-center">
+                    <Link :href="route('logout')" method="post" class="flex items-center py-2 px-4 text-sm font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                        <svg class="w-5 h-5 text-gray-800 dark:text-white mr-1 rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01"/>
+                        </svg>
+                        <span class="dark:text-gray-100">로그아웃</span>
+                    </Link>
+                </div>
+                <div v-else class="flex items-center">
+                    <Link :href="route('login')" class="p-2 text-gray-500 rounded-md hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.0" width="24px" height="24px" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet">
+                            <g transform="translate(0,512) scale(0.1,-0.1)" fill="currentColor" stroke="none">
+                                <path d="M2380 4943 c-511 -45 -921 -413 -1016 -910 -20 -106 -22 -290 -4 -393 80 -465 439 -828 906 -916 119 -22 355 -15 464 14 245 65 450 195 597 377 111 138 179 272 225 443 29 111 36 346 14 466 -75 398 -346 718 -724 856 -129 47 -333 75 -462 63z"/>
+                                <path d="M3636 2715 c-134 -37 -295 -157 -316 -236 -28 -103 47 -199 155 -199 53 0 89 16 125 55 14 15 48 38 75 51 49 23 58 24 310 24 290 0 307 -4 374 -71 75 -74 71 -24 71 -885 l0 -772 -28 -53 c-36 -69 -95 -114 -167 -129 -36 -8 -136 -10 -283 -8 -252 4 -271 8 -343 72 -59 54 -95 69 -151 64 -122 -12 -183 -144 -115 -247 32 -48 130 -124 202 -156 102 -45 144 -50 445 -50 267 0 290 1 355 22 194 62 341 215 390 408 22 88 22 1598 0 1694 -47 200 -216 369 -416 416 -86 20 -609 20 -683 0z"/>
+                                <path d="M2055 2224 c-496 -50 -1016 -203 -1438 -421 -122 -64 -174 -112 -215 -201 l-27 -57 0 -475 c0 -474 0 -475 23 -532 46 -113 159 -205 281 -228 46 -8 2341 -16 2341 -7 0 1 -7 36 -16 77 -15 75 -12 166 7 218 7 19 0 31 -55 85 -69 67 -119 155 -137 236 l-10 49 -177 5 c-239 7 -317 33 -427 142 -207 204 -187 540 42 716 107 82 148 93 371 97 150 3 192 6 192 17 0 37 45 150 81 205 23 33 40 63 38 64 -2 2 -64 9 -138 15 -176 15 -573 12 -736 -5z"/>
+                                <path d="M3225 2026 c-56 -25 -88 -70 -93 -129 -6 -70 7 -93 107 -192 45 -44 81 -83 81 -87 0 -5 -186 -8 -414 -8 -412 0 -413 0 -446 -22 -50 -34 -72 -71 -77 -125 -5 -59 25 -117 77 -147 33 -20 54 -21 448 -26 l413 -5 -81 -80 c-96 -94 -110 -118 -110 -182 0 -88 68 -153 160 -153 22 0 53 6 68 14 32 18 485 472 501 503 16 31 14 109 -3 141 -21 39 -465 477 -503 496 -39 19 -87 20 -128 2z"/>
+                            </g>
+                        </svg>
+                    </Link>
+                </div>
             </div>
         </div>
     </header>
