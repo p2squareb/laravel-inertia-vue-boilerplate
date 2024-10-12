@@ -67,7 +67,7 @@ const submit = () => {
                             <a href="/signup/apple?next_page=%2F" class="p-2 sm:p-3 rounded" style="background-color: rgb(0, 0, 0);"><img alt="apple" src="/images/icon/apple-logo.png" class="w-7 h-7"></a>
                         </div>
                     </div>
-                    <button type="button"  class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center text-white bg-red-700 rounded-md hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700">회원가입</button>
+                    <PrimaryButton @click="router.visit(route('register'));" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'">회원가입</PrimaryButton>
                 </div>
                 <div v-else>
                     <PrimaryButton @click="router.visit(route('register'));" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'">회원가입</PrimaryButton>
