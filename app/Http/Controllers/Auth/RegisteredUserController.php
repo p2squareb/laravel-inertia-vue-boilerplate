@@ -32,14 +32,15 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'nickname' => ['required', 'string', 'regex:/^[A-Za-z0-9가-힣]{2,8}$/', 'unique:'.User::class],
+            'nickname' => ['required', 'string', 'min:2', 'max:8', 'unique:'.User::class],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'string', 'min:8', 'max:16', 'regex:/[A-Z]/', 'regex:/[0-9]/', 'confirmed', Password::defaults()],
             'terms' => 'accepted',
             'privacy' => 'accepted',
         ], [
             'nickname.required' => '닉네임을 입력해 주세요.',
-            'nickname.regex' => '2~8자 이내로 영어|한글|숫자만 사용 가능합니다.',
+            'nickname.min' => '닉네임은 최소 2자 이상이어야 합니다.',
+            'nickname.max' => '닉네임은 최대 8자까지 가능합니다.',
             'nickname.unique' => '이미 사용 중인 닉네임입니다.',
             'email.required' => '이메일을 입력해 주세요.',
             'email.email' => '유효한 이메일 형식을 입력해 주세요.',

@@ -1,11 +1,16 @@
 <script setup lang="ts">
+import { useForm } from '@inertiajs/vue3';
+import {ref} from "vue";
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Checkbox from "@/Components/Checkbox.vue";
+import LoadingOverlay from "@/Components/LoadingOverlay.vue";
+
+
+const isLoading = ref(false);
 
 const form = useForm({
     nickname: '',
@@ -17,9 +22,11 @@ const form = useForm({
 });
 
 const submit = () => {
+    isLoading.value = true;
     form.post(route('register'), {
         onFinish: () => {
             form.reset('password', 'password_confirmation');
+            isLoading.value = false;
         },
     });
 };
@@ -81,5 +88,6 @@ const submit = () => {
                 </form>
             </div>
         </div>
+        <LoadingOverlay :isLoading="isLoading">인증 이메일을 발송 중입니다.</LoadingOverlay>
     </main>
 </template>
