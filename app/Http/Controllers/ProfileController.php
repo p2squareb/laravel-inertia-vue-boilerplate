@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,10 +33,6 @@ class ProfileController extends Controller
     {
         $request->user()->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
-
         $request->user()->save();
 
         return Redirect::route('profile.edit');
@@ -48,13 +45,20 @@ class ProfileController extends Controller
     {
         $request->validate([
             'password' => ['required', 'current_password'],
+        ], [
+            'password.required' => '비밀번호를 입력해 주세요.',
+            'password.current_password' => '비밀번호가 일치하지 않습니다.',
         ]);
 
         $user = $request->user();
 
         Auth::logout();
 
-        $user->delete();
+        User::where('id', $user->id)->update([
+            'status' => 2,
+            'leaved_at' => now(),
+        ]);
+        //$user->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();

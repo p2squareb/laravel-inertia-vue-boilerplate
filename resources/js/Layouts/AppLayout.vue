@@ -3,7 +3,7 @@ import AppNavbar from "@/Layouts/partials/AppNavbar.vue";
 </script>
 
 <template>
-    <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900">
+    <div class="flex flex-col min-h-screen bg-white dark:bg-gray-900 text-sm text-gray-900 dark:text-white">
         <AppNavbar />
         <slot />
     </div>

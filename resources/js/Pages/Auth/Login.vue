@@ -2,7 +2,7 @@
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
+import Button from '@/Components/Button.vue';
 import TextInput from '@/Components/TextInput.vue';
 import {router, useForm} from '@inertiajs/vue3';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
@@ -54,7 +54,7 @@ const submit = () => {
                         </div>
                         <Link :href="route('password.request')" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">비밀번호 찾기</Link>
                     </div>
-                    <PrimaryButton class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :clolr="'blue'" :disabled="form.processing">로그인하기</PrimaryButton>
+                    <Button class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'blue'" :disabled="form.processing">로그인하기</Button>
                 </form>
                 <div v-if="socialite === '1'">
                     <div class="mt-5 text-sm font-medium text-gray-500 dark:text-gray-400 border border-gray-300 dark:border-gray-500 rounded-md py-3 px-4">
@@ -67,10 +67,10 @@ const submit = () => {
                             <a href="/signup/apple?next_page=%2F" class="p-2 sm:p-3 rounded" style="background-color: rgb(0, 0, 0);"><img alt="apple" src="/images/icon/apple-logo.png" class="w-7 h-7"></a>
                         </div>
                     </div>
-                    <PrimaryButton @click="router.visit(route('register'));" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'">회원가입</PrimaryButton>
+                    <Button @click="router.visit(route('register'));" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'">회원가입</Button>
                 </div>
                 <div v-else>
-                    <PrimaryButton @click="router.visit(route('register'));" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'">회원가입</PrimaryButton>
+                    <Button @click="router.visit(route('register'));" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'">회원가입</Button>
                 </div>
             </div>
         </div>

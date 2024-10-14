@@ -16,15 +16,18 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
+            'nickname' => ['required', 'string', 'min:2', 'max:8', Rule::unique(User::class)->ignore($this->user()->id)],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'nickname.required' => '닉네임을 입력해 주세요.',
+            'nickname.string' => '닉네임은 문자열이어야 합니다.',
+            'nickname.min' => '닉네임은 최소 2자 이상이어야 합니다.',
+            'nickname.max' => '닉네임은 최대 8자 이하이어야 합니다.',
+            'nickname.unique' => '이 닉네임은 이미 사용 중입니다.',
         ];
     }
 }

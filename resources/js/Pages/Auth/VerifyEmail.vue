@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {useForm} from '@inertiajs/vue3';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
+import Button from '@/Components/Button.vue';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import LoadingOverlay from "@/Components/LoadingOverlay.vue";
 
@@ -35,7 +35,7 @@ const submit = () => {
                             가입시 등록하신 이메일로 인증 메일이 발송되었습니다.<br>이메일을 받지 못하셨다면 재발송 버튼을 클릭해주세요.
                         </label>
                     </div>
-                    <PrimaryButton class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :clolr="'blue'" :disabled="form.processing">인증 이메일 재발송</PrimaryButton>
+                    <Button class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'blue'" :disabled="form.processing">인증 이메일 재발송</Button>
                 </form>
                 <Link :href="route('logout')" method="post" as="button" class="w-full mt-3 px-5 py-[7px] text-base font-medium text-center text-white bg-red-700 rounded-md hover:bg-red-800 dark:bg-red-600 dark:hover:bg-red-700">로그아웃</Link>
             </div>

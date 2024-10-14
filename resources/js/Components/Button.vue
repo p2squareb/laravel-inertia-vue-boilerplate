@@ -6,7 +6,7 @@ const props = withDefaults(
         color?: 'blue' | 'gray' | 'red' | 'green' | 'yellow';
     }>(),
     {
-        color: 'blue'
+        color: 'blue',
     }
 )
 
