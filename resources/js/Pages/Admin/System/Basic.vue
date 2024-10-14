@@ -6,7 +6,8 @@ defineOptions({
 </script>
 
 <template>
-    <main>
+    asdf
+<!--    <main>
         <div class="p-3 bg-white block sm:flex items-center justify-between border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <div class="w-full mb-1">
                 <div class="mb-3">
@@ -131,6 +132,6 @@ defineOptions({
                 </div>
             </div>
         </div>
-    </main>
+    </main>-->
 
 </template>

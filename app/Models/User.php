@@ -19,7 +19,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Laravel\Sanctum\PersonalAccessToken;
 
 /**
- * 
+ *
  *
  * @property int $id
  * @property string|null $remember_token

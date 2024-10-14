@@ -7,6 +7,7 @@ import { Head } from '@inertiajs/vue3';
 
 defineProps<{
     mustVerifyEmail?: boolean;
+    email_verified_at?: string;
     status?: string;
 }>();
 </script>
@@ -30,6 +31,7 @@ defineProps<{
                 >
                     <UpdateProfileInformationForm
                         :must-verify-email="mustVerifyEmail"
+                        :email_verified_at="email_verified_at"
                         :status="status"
                         class="max-w-xl"
                     />
