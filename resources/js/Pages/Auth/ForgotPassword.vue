@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import Button from '@/Components/Button.vue';
 import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+import { useForm } from '@inertiajs/vue3';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
 defineProps<{
     status?: string;
@@ -20,47 +20,28 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Forgot Password" />
+    <main>
+        <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900">
+            <Link href="/" class="flex items-center justify-center mb-3 text-2xl font-semibold lg:mb-7 dark:text-white"><ApplicationLogo /></Link>
 
-        <div class="mb-4 text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email
-            address and we will email you a password reset link that will allow
-            you to choose a new one.
-        </div>
-
-        <div
-            v-if="status"
-            class="mb-4 text-sm font-medium text-green-600"
-        >
-            {{ status }}
-        </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
+            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
+                <div class="w-full p-6 sm:p-8">
+                    <h2 class="mb-3 text-xl font-bold text-gray-900 dark:text-white">비밀번호 찾기</h2>
+                    <p class="text-sm font-normal text-gray-700 dark:text-gray-300">
+                        가입 시 등록하신 이메일 주소를 입력해 주세요. 비밀번호 재설정 링크를 보내드립니다.
+                    </p>
+                    <form @submit.prevent="submit">
+                        <div class="mt-4">
+                            <InputLabel for="email" value="이메일" class="block mb-2" />
+                            <TextInput type="email" id="email" v-model="form.email" class="block w-full p-[7px]" autofocus required placeholder="이메일을 입력해주세요." />
+                            <InputError :message="form.errors.email" />
+                        </div>
+                        <Button class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                            비밀번호 재설정 링크 받기
+                        </Button>
+                    </form>
+                </div>
             </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <Button
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Email Password Reset Link
-                </Button>
-            </div>
-        </form>
-    </GuestLayout>
+        </div>
+    </main>
 </template>

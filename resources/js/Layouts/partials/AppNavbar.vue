@@ -114,6 +114,120 @@ import ApplicationLogo from "@/Components/ApplicationLogo.vue";
                 font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-1 sm:ml-3">Pricing & FAQ</a>-->
 
                 <div v-if="$page.props.auth.user" class="flex items-center">
+                    <button type="button" data-dropdown-toggle="notification-dropdown" class="relative inline-flex items-center p-2 text-gray-500 rounded-md hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-700">
+                        <span class="sr-only">View notifications</span>
+                        <svg aria-hidden="true" class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"></path></svg>
+
+                        <span class="sr-only">Notifications Count</span>
+                        <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-1 -end-1 dark:border-gray-900">
+                            23
+                        </div>
+                    </button>
+<!--                    <div class="hidden overflow-hidden z-50 my-4 max-w-sm text-base list-none bg-white rounded divide-y divide-gray-100 shadow-lg dark:divide-gray-600 dark:bg-gray-700" id="notification-dropdown">
+                        <div>
+                            @forelse($notifications as $notification)
+                            <div :key="{{ $notification->id }}" class="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-800 dark:border-gray-600">
+                                <div class="flex-shrink-0">
+                                    @if ($notification->user->profile_photo_path)
+                                    <img class="w-10 h-10 rounded-full" src="/storage/profiles/{{ $notification->user->profile_photo_path }}" alt="{{ $notification->user->nickname }}'s avatar">
+                                    @else
+                                    <svg class="w-10 h-10 text-gray-800 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                                    </svg>
+                                    @endif
+                                </div>
+                                <div class="pl-3 w-full">
+                                    <div wire:click="markAsRead({{ $notification->id }}, 'link', '{{ $notification->refer_url }}')" class="text-gray-700 font-normal text-sm mb-1 dark:text-gray-300 cursor-pointer">
+                                        {!! str_replace($notification->send_nickname, '<span class="font-semibold text-gray-900 dark:text-white">' . $notification->send_nickname . '</span>', $notification->message) !!}
+                                    </div>
+                                    <div class="flex justify-end text-xs font-medium text-blue-700 dark:text-blue-400">
+                                        <p>{{ humanReadableDate($notification->created_at, 2) }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            @empty
+                            <div class="flex py-3 px-4 border-b hover:bg-gray-100 dark:hover:bg-gray-800 dark:border-gray-600">
+                                <div class="w-full">
+                                    <div class="text-gray-500 font-normal text-sm dark:text-gray-400">알림 내역이 없습니다.</div>
+                                </div>
+                            </div>
+                            @endforelse
+                        </div>
+                        @if (count($notifications) > 0)
+                        <div class="flex items-center justify-between py-3 px-6 text-sm font-normal text-center text-gray-900 hover:bg-gray-100 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800">
+                            <div wire:click="markAsRead({{ $notification->id }}, 'all_view')" class="inline-flex items-center">
+                                <svg aria-hidden="true" class="mr-2 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg>
+                                전체보기
+                            </div>
+                            <div wire:click="markAsRead({{ $notification->id }}, 'all_read')" class="inline-flex items-center cursor-pointer">
+                                <svg class="mr-2 w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="m4 15.6 3.055-3.056A4.913 4.913 0 0 1 7 12.012a5.006 5.006 0 0 1 5-5c.178.009.356.027.532.054l1.744-1.744A8.973 8.973 0 0 0 12 5.012c-5.388 0-10 5.336-10 7A6.49 6.49 0 0 0 4 15.6Z"/>
+                                    <path d="m14.7 10.726 4.995-5.007A.998.998 0 0 0 18.99 4a1 1 0 0 0-.71.305l-4.995 5.007a2.98 2.98 0 0 0-.588-.21l-.035-.01a2.981 2.981 0 0 0-3.584 3.583c0 .012.008.022.01.033.05.204.12.402.211.59l-4.995 4.983a1 1 0 1 0 1.414 1.414l4.995-4.983c.189.091.386.162.59.211.011 0 .021.007.033.01a2.982 2.982 0 0 0 3.584-3.584c0-.012-.008-.023-.011-.035a3.05 3.05 0 0 0-.21-.588Z"/>
+                                    <path d="m19.821 8.605-2.857 2.857a4.952 4.952 0 0 1-5.514 5.514l-1.785 1.785c.767.166 1.55.25 2.335.251 6.453 0 10-5.258 10-7 0-1.166-1.637-2.874-2.179-3.407Z"/>
+                                </svg>
+                                모두 읽음
+                            </div>
+                        </div>
+                        @endif
+                    </div>-->
+
+                    <button type="button" class="flex mx-3 text-sm bg-gray-300 dark:bg-gray-800 rounded-full md:mr-0 flex-shrink-0" id="userMenuDropdownButton" aria-expanded="false" data-dropdown-toggle="userMenuDropdown">
+<!--                        @if (auth()->user()->profile_photo_path)
+                        <img class="w-8 h-8 rounded-full" src="/storage/profiles/{{ auth()->user()->profile_photo_path }}" alt="{{ auth()->user()->nickname }}'s avatar">
+                        @else-->
+                        <svg class="w-8 h-8 text-gray-800 dark:text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                        </svg>
+<!--                        @endif-->
+                    </button>
+<!--
+                    <div class="hidden z-50 my-4 w-52 list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600" id="userMenuDropdown">
+                        <div class="py-3 px-4">
+                            <span class="block text-sm font-semibold text-gray-900 dark:text-white">{{ auth()->user()->nickname }}</span>
+                            <span class="block text-sm font-light text-gray-700 truncate dark:text-gray-300">{{ auth()->user()->email }}</span>
+                        </div>
+                        <ul class="py-1 font-light" aria-labelledby="userMenuDropdownButton">
+                            <li>
+                                <a href="{{ route('profile.show') }}" class="flex py-2 px-4 text-sm font-semibold text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                                    <svg class="w-5 h-5 text-gray-800 dark:text-white mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M10 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h2m10 1a3 3 0 0 1-3 3m3-3a3 3 0 0 0-3-3m3 3h1m-4 3a3 3 0 0 1-3-3m3 3v1m-3-4a3 3 0 0 1 3-3m-3 3h-1m4-3v-1m-2.121 1.879-.707-.707m5.656 5.656-.707-.707m-4.242 0-.707.707m5.656-5.656-.707.707M12 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                                    </svg>
+                                    <span class="dark:text-gray-100">프로필 설정</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('mypage.overview') }}" class="flex py-2 px-4 text-sm font-semibold text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                                    <svg class="w-5 h-5 mr-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fill-rule="evenodd" d="M5.024 3.783A1 1 0 0 1 6 3h12a1 1 0 0 1 .976.783L20.802 12h-4.244a1.99 1.99 0 0 0-1.824 1.205 2.978 2.978 0 0 1-5.468 0A1.991 1.991 0 0 0 7.442 12H3.198l1.826-8.217ZM3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5h-4.43a4.978 4.978 0 0 1-9.14 0H3Zm5-7a1 1 0 0 1 1-1h6a1 1 0 1 1 0 2H9a1 1 0 0 1-1-1Zm0 2a1 1 0 0 0 0 2h8a1 1 0 1 0 0-2H8Z" clip-rule="evenodd"/>
+                                    </svg>
+                                    <span class="dark:text-gray-100">마이페이지</span>
+                                </a>
+                            </li>
+                            @if (auth()->user()->group_level >= 11)
+                            <li>
+                                <a href="{{ route('admin.dashboard') }}" class="flex py-2 px-4 text-sm font-semibold text-gray-800 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                                    <svg class="w-5 h-5 mr-1 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V5Zm16 14a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2ZM4 13a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-6Zm16-2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v6Z"/>
+                                    </svg>
+                                    <span class="dark:text-gray-100">관리자 페이지</span>
+                                </a>
+                            </li>
+                            @endif
+                        </ul>
+                        <ul class="py-1 font-light text-gray-700 dark:text-gray-300" aria-labelledby="dropdown">
+                            <li>
+                                <form method="POST" action="{{ route('logout') }}" x-data>
+                                    @csrf
+                                    <a href="{{ route('logout') }}" @click.prevent="$root.submit();" class="flex items-center py-2 px-4 text-sm font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
+                                        <svg class="w-5 h-5 text-gray-800 dark:text-white mr-1 rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01"/>
+                                        </svg>
+                                        <span class="dark:text-gray-100">로그아웃</span>
+                                    </a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>-->
                     <Link :href="route('logout')" method="post" as="button" class="flex items-center py-2 px-4 text-sm font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-white">
                         <svg class="w-5 h-5 text-gray-800 dark:text-white mr-1 rotate-90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v9m-5 0H5a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1h-2M8 9l4-5 4 5m1 8h.01"/>

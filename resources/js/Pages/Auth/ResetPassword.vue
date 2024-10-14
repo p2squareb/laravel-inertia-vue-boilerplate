@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import GuestLayout from '@/Layouts/GuestLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import Button from '@/Components/Button.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
+import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 
 const props = defineProps<{
     email: string;
@@ -28,70 +28,31 @@ const submit = () => {
 </script>
 
 <template>
-    <GuestLayout>
-        <Head title="Reset Password" />
+    <Head title="비밀번호 재설정" />
+    <main>
+        <div class="flex flex-col justify-center items-center px-6 pt-8 mx-auto md:h-screen pt:mt-0">
+            <Link href="/" class="flex items-center justify-center mb-3 text-2xl font-semibold lg:mb-7 dark:text-white"><ApplicationLogo /></Link>
 
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-
-                <TextInput
-                    id="email"
-                    type="email"
-                    class="mt-1 block w-full"
-                    v-model="form.email"
-                    required
-                    autofocus
-                    autocomplete="username"
-                />
-
-                <InputError class="mt-2" :message="form.errors.email" />
+            <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
+                <div class="w-full p-6 sm:p-8">
+                    <h2 class="text-xl font-bold text-gray-900 dark:text-white">비밀번호 재설정</h2>
+                    <form @submit.prevent="submit" class="mt-4 space-y-5">
+                        <div>
+                            <InputLabel for="email" value="이메일" class="block mb-2" />
+                            <TextInput type="email" id="email" v-model="form.email" class="block w-full p-[7px]" required placeholder="이메일을 입력해주세요." />
+                            <InputError :message="form.errors.email" />
+                        </div>
+                        <div>
+                            <InputLabel for="password" value="새 비밀번호" class="block mb-2" />
+                            <TextInput type="password" id="password" ref="passwordInput" v-model="form.password" class="mb-2 block w-full p-[7px]" required placeholder="대문자+숫자 포함 (8~16자)" />
+                            <InputLabel for="password_confirmation" value="새 비밀번호 확인" class="block mb-2" />
+                            <TextInput type="password" id="password_confirmation" v-model="form.password_confirmation" class="mb-2 block w-full p-[7px]" required placeholder="대문자+숫자 포함 (8~16자)" />
+                            <InputError :message="form.errors.password" />
+                        </div>
+                        <Button class="w-full mt-3 px-5 py-[7px] font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">비밀번호 재설정</Button>
+                    </form>
+                </div>
             </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-
-                <TextInput
-                    id="password"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel
-                    for="password_confirmation"
-                    value="Confirm Password"
-                />
-
-                <TextInput
-                    id="password_confirmation"
-                    type="password"
-                    class="mt-1 block w-full"
-                    v-model="form.password_confirmation"
-                    required
-                    autocomplete="new-password"
-                />
-
-                <InputError
-                    class="mt-2"
-                    :message="form.errors.password_confirmation"
-                />
-            </div>
-
-            <div class="mt-4 flex items-center justify-end">
-                <Button
-                    :class="{ 'opacity-25': form.processing }"
-                    :disabled="form.processing"
-                >
-                    Reset Password
-                </Button>
-            </div>
-        </form>
-    </GuestLayout>
+        </div>
+    </main>
 </template>

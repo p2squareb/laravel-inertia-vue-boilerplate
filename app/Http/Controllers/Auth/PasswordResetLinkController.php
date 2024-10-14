@@ -25,7 +25,7 @@ class PasswordResetLinkController extends Controller
     /**
      * Handle an incoming password reset link request.
      *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
@@ -45,7 +45,8 @@ class PasswordResetLinkController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'email' => [trans($status)],
+            //'email' => [trans($status)],
+            'email' => '비밀번호 재설정 링크를 보내는 중에 문제가 발생했습니다. 다시 시도해 주세요.',
         ]);
     }
 }
