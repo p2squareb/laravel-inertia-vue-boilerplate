@@ -35,7 +35,7 @@ const submit = () => {
     <Head title="회원가입" />
     <main>
         <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900">
-            <Link href="/" class="flex items-center justify-center mb-3 text-2xl font-semibold lg:mb-7 dark:text-white"><ApplicationLogo /></Link>
+            <Link href="/" class="flex items-center justify-center mb-3 font-semibold lg:mb-5 dark:text-white"><ApplicationLogo /></Link>
             <div class="w-full max-w-md p-6 sm:p-8 bg-white rounded-md shadow dark:bg-gray-800">
                 <h2 class="text-xl font-bold text-gray-900 dark:text-white">딱 이것만 체크하면 가입완료!</h2>
                 <form class="mt-5 space-y-5" @submit.prevent="submit">

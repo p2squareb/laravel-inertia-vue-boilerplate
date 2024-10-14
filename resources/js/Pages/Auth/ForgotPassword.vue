@@ -22,7 +22,7 @@ const submit = () => {
 <template>
     <main>
         <div class="flex flex-col items-center justify-center px-6 pt-8 mx-auto md:h-screen pt:mt-0 dark:bg-gray-900">
-            <Link href="/" class="flex items-center justify-center mb-3 text-2xl font-semibold lg:mb-7 dark:text-white"><ApplicationLogo /></Link>
+            <Link href="/" class="flex items-center justify-center mb-3 font-semibold lg:mb-5 dark:text-white"><ApplicationLogo /></Link>
 
             <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800">
                 <div class="w-full p-6 sm:p-8">
