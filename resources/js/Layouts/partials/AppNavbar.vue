@@ -39,7 +39,7 @@ import Dropdown from "@/Components/Dropdown.vue";
 
                 <ul id="flowbiteMenu" class="flex-col hidden pt-6 lg:flex-row lg:self-center lg:py-0 lg:flex">
                     <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
-                        <a href="" class="text-base font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">게시판</a>
+                        <Link :href="route('write.list', {tableId: 'test'})" class="text-base font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">게시판</Link>
                     </li>
                     <li class="mb-3 lg:px-2 xl:px-2 lg:mb-0">
                         <a href="" class="text-base font-medium text-gray-900 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-500">Blocks</a>

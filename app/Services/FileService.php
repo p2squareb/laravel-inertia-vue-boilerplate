@@ -66,7 +66,6 @@ class FileService
 
     public function deleteFileOnServer($folderName, $fileName): void
     {
-        $request->test;
         $dir = storage_path('app/public/'. $folderName);
         $path = "$dir/$fileName";
         if(FacadesFile::exists($path)) {

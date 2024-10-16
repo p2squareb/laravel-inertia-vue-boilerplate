@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SystemController;
+use App\Http\Controllers\WriteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -25,8 +26,8 @@ Route::get('/site-policy/{id}', function ($id) {
 /** 게시판 */
 Route::group(['prefix' => '/bbs/{tableId}', 'middleware' => 'board-auth-check:status'], function()
 {
+    Route::get('/list', [WriteController::class, 'list'])->name('write.list');
     //Route::get('/password/{writeId}/{access}', WritePassword::class)->name('write.password.check');
-    //Route::get('/list', WriteList::class)->name('write.list');
     //Route::get('/create', WriteCreate::class)->name('write.create')->middleware('board-auth-check:write');
     //Route::get('/read/{writeId}', WriteRead::class)->name('write.read')->middleware('board-auth-check:read');
     //Route::get('/update/{writeId}', WriteUpdate::class)->name('write.update')->middleware('board-auth-check:update');

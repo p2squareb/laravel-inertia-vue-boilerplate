@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\AdminCheck;
+use App\Http\Middleware\BoardAuthCheck;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -16,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias([
             'admin' => AdminCheck::class,
+            'board-auth-check' => BoardAuthCheck::class,
         ]);
         $middleware->web(append: [
             HandleInertiaRequests::class,
