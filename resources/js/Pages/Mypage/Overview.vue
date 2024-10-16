@@ -7,7 +7,7 @@ defineOptions({
     layout: AppLayout,
 });
 
-const props = defineProps<{
+defineProps<{
     user_created_at: String;
     profile_photo_path?: String;
 }>();
@@ -53,7 +53,7 @@ const profileDelete = () => {
                                 </Link>
                             </h3>
                             <div class="mb-1 text-sm text-gray-700 dark:text-gray-300">
-                                {{ $page.props.auth.user.nickname }}
+                                {{ $page.props.auth.user.nickname }} | 포인트 : {{ $page.props.point }}<span class="text-xs ml-0.5">P</span>
                             </div>
                             <div class="mb-1 text-sm text-gray-700 dark:text-gray-300">Member Since {{ user_created_at }}</div>
                             <div class="flex items-center space-x-4">

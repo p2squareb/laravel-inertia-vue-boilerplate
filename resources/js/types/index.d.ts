@@ -3,10 +3,12 @@ export interface User {
     name: string;
     nickname: string;
     email: string;
+    group_level: number;
     email_verified_at?: string;
     status: number;
     profile_photo_path?: string;
     created_at: string;
+    point: number;
 }
 
 export type PageProps<
