@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Board;
+use App\Models\BoardWrite;
 use App\Models\InquiryCategory;
 use App\Models\System;
 use App\Models\User;
@@ -139,10 +140,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Board::insert([
-            'table_id' => 'test',
-            'table_name' => '임시테스트',
+            'table_id' => 'basic',
+            'table_name' => '자유게시판',
             'status' => 1,
-            'use_category' => 0,
+            'use_category' => 1,
             'category_list' => '구글,애플,네이버,카카오,페이스북,인스타그램,트위터,유튜브',
             'write_level' => 1,
             'use_comment' => 1,
@@ -150,6 +151,8 @@ class DatabaseSeeder extends Seeder
             'use_report' => 1,
             'skin' => 'basic',
         ]);
+
+        BoardWrite::factory(100)->create();
 
         for($i = 1; $i <= 5; $i++) {
             InquiryCategory::insert([
