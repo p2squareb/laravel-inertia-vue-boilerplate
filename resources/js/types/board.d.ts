@@ -3,12 +3,12 @@ export interface Board {
     table_name: string;
     status: boolean;
     use_category: boolean;
-    category_list?: null|string;
+    category_list: string;
     write_level: number
     use_comment: boolean;
     use_rate: boolean;
     use_report: boolean;
-    skin?: null|string;
+    skin: string;
     article_count: number;
     comment_count: number;
 }

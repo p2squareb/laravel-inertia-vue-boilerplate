@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
 
         $configData = [
             'basic' => [
-                'site_name' => 'SQUARE BOARD',
+                'site_name' => 'LABOL',
                 'domain_name' => 'psquare.com',
                 'sq_email' => 'p2squareb@gmail.com',
                 'use_smtp' => '1',

@@ -72,7 +72,10 @@ Route::get('/dashboard', function () {
 
 Route::group(['prefix' => 'admin', 'middleware' => ['web', 'admin']], function() {
     Route::get('/', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
-    //Route::get('/dashboard', Basic::class)->name('admin.dashboard');
+
+    /** 시스템 설정 */
+    Route::get('/system/basic', [SystemController::class, 'basic'])->name('admin.system.basic');
+
 
     /** 시스템 설정 */
     //Route::get('/system/basic', Basic::class)->name('admin.system.basic');

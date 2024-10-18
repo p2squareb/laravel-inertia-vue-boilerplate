@@ -24,7 +24,7 @@ class WriteController extends Controller
             $isWrite = true;
         }
 
-        return Inertia::render('Write/BasicList', [
+        return Inertia::render('Write/List', [
             'board' => $board,
             'notice' => $this->getNoticeWrites($tableId),
             'write' => $this->getWrites($board->skin, $tableId, $request->searchKind, $request->searchString),
