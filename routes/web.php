@@ -75,6 +75,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'admin']], function()
 
     /** 시스템 설정 */
     Route::get('/system/basic', [SystemController::class, 'basic'])->name('admin.system.basic');
+    Route::post('/system/basic', [SystemController::class, 'basicUpdate'])->name('admin.system.basic.update');
 
 
     /** 시스템 설정 */

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\System;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -10,6 +12,40 @@ class SystemController extends Controller
 {
     public function basic(Request $request): Response
     {
-        return Inertia::render('Admin/System/Basic');
+        $basic = System::where('title', 'basic')->orderByDesc('id')->first();
+        $data = json_decode($basic->content);
+
+        return Inertia::render('Admin/System/Basic', [
+            'data' => $data,
+        ]);
+    }
+
+    public function basicUpdate(Request $request): void
+    {
+        $configData = [
+            'basic' => [
+                'site_name' => $request->site_name,
+                'domain_name' => $request->domain_name,
+                'sq_email' => $request->sq_email,
+                'use_smtp' => $request->use_smtp ?? '0',
+                'use_external_email' => $request->use_external_email ?? '0',
+                'use_dormant' => $request->use_dormant ?? '0',
+            ],
+            'image' => [
+                'image_resize' => $request->image_resize,
+                'image_width_max' => $request->image_width_max,
+            ],
+        ];
+
+        System::insert([
+            'register_ip' => request()->ip(),
+            'register_id' => 'system',
+            'title' => 'basic',
+            'content' => json_encode($configData),
+        ]);
+
+        Cache::forget("config.basic");
+
+        //$this->toastSuccess('기본 설정이 변경되었습니다.');
     }
 }
