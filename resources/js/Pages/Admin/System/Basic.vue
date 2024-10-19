@@ -4,10 +4,9 @@ import {useForm} from "@inertiajs/vue3";
 import TextInput from "@/Components/TextInput.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
-import PageNav from "@/Pages/Admin/Partials/PageNav.vue";
+import Breadcrumb from "@/Pages/Admin/Partials/Breadcrumb.vue";
 import Radio from "@/Components/Radio.vue";
-import {ref} from "vue";
-import Tooltip from "@/Components/Tooltip.vue";
+import Tooltip from "@/Components/Tooltip/Tooltip.vue";
 
 defineOptions({
     layout: DashboardLayout,
@@ -31,13 +30,12 @@ const form = useForm({
 const submit = () => {
     form.post(route('admin.system.basic.update'));
 };
-
 </script>
 
 <template>
     <div class="px-4 py-6 bg-white block sm:flex items-center justify-between border-b border-gray-200 dark:bg-gray-900 dark:border-gray-700">
         <div class="w-full mb-3">
-            <PageNav menu-name="시스템 설정" current-location="기본 환경설정" />
+            <Breadcrumb menu-name="시스템 설정" current-location="기본 환경설정" />
             <form @submit.prevent="submit">
                 <div class="p-3 sm:p-6 my-3 bg-white border border-gray-200 rounded-md shadow-sm col-span-full dark:border-gray-700 dark:bg-gray-800">
                     <div class="flex items-center mb-5">

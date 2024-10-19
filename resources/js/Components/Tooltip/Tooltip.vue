@@ -1,27 +1,8 @@
-<template>
-    <div class="flex items-start">
-        <tooltip
-            :placement="placement"
-            :triggers="[trigger]"
-            :theme="theme"
-            auto-hide
-        >
-            <slot name="trigger" />
-            <template #popper>
-                <slot name="content" />
-            </template>
-        </tooltip>
-    </div>
-</template>
-
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { Tooltip } from 'floating-vue'
+import type { TooltipPlacement, TooltipStyle, TooltipTrigger } from "@/Components/Tooltip/types";
 import 'floating-vue/dist/style.css'
-
-export type TooltipPlacement = 'auto' | 'auto-start' | 'auto-end' | 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'right' | 'right-start' | 'right-end' | 'left' | 'left-start' | 'left-end';
-export type TooltipStyle = 'dark' | 'light';
-export type TooltipTrigger = 'hover' | 'click';
 
 interface TooltipProps {
     placement?: TooltipPlacement
@@ -41,6 +22,22 @@ const theme = computed(() => {
     return themes[props.theme]
 })
 </script>
+
+<template>
+    <div class="flex items-start">
+        <tooltip
+            :placement="placement"
+            :triggers="[trigger]"
+            :theme="theme"
+            auto-hide
+        >
+            <slot name="trigger" />
+            <template #popper>
+                <slot name="content" />
+            </template>
+        </tooltip>
+    </div>
+</template>
 
 <style>
 .v-popper--theme-tooltip-dark .v-popper__wrapper .v-popper__inner {
