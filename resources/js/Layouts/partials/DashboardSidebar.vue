@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { useDashboardSideMenuStore } from "@/stores/dashboard-side-menu";
 
+const sideMenuStore = useDashboardSideMenuStore();
 </script>
 
 <template>
