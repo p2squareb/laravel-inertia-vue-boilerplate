@@ -1,4 +1,5 @@
 import { toast, type ToastOptions } from 'vue3-toastify';
+import {getTheme} from "@/theme";
 
 export const notify = (type: string, message: string) => {
 
@@ -14,9 +15,9 @@ export const notify = (type: string, message: string) => {
             padding: '0.75rem 1.25rem',
             borderRadius: '0.25rem',
             boxShadow: '0 0 0.5rem rgba(0, 0, 0, 0.1)',
-            color: '#fff',
-            backgroundColor: '#374152',
-            border: '1px solid #333',
+            color: getTheme() === 'dark' ? '#fff' : '#333',
+            backgroundColor: getTheme() === 'dark' ? '#374152' : '#f7f7f7',
+            border: getTheme() === 'dark' ? '1px solid #333' : '1px solid #ccc',
         },
         closeButton: false,
     } as ToastOptions);

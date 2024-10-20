@@ -32,11 +32,7 @@ const submit = () => {
     form.post(route('admin.system.basic.update'), {
         preserveScroll: true,
         onSuccess: () => {
-            notify('info', '기본 환경설정이 변경되었습니다.');
             notify('success', '기본 환경설정이 변경되었습니다.');
-            notify('warning', '기본 환경설정이 변경되었습니다.');
-            notify('error', '기본 환경설정이 변경되었습니다.');
-            notify('loading', '기본 환경설정이 변경되었습니다.');
         },
     });
 };
