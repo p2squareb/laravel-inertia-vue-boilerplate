@@ -6,7 +6,8 @@ import InputLabel from "@/Components/InputLabel.vue";
 import InputError from "@/Components/InputError.vue";
 import Breadcrumb from "@/Pages/Admin/Partials/Breadcrumb.vue";
 import Radio from "@/Components/Radio.vue";
-import Tooltip from "@/Components/Tooltip/Tooltip.vue";
+import Tooltip from "@/Components/Tooltip.vue";
+import {notify} from "@/Components/Toastify";
 
 defineOptions({
     layout: DashboardLayout,
@@ -28,7 +29,16 @@ const form = useForm({
 });
 
 const submit = () => {
-    form.post(route('admin.system.basic.update'));
+    form.post(route('admin.system.basic.update'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            notify('info', '기본 환경설정이 변경되었습니다.');
+            notify('success', '기본 환경설정이 변경되었습니다.');
+            notify('warning', '기본 환경설정이 변경되었습니다.');
+            notify('error', '기본 환경설정이 변경되었습니다.');
+            notify('loading', '기본 환경설정이 변경되었습니다.');
+        },
+    });
 };
 </script>
 
@@ -88,8 +98,8 @@ const submit = () => {
                                         </button>
                                     </template>
                                     <template #content>
-                                        <div class="p-3 space-y-2 text-sm">
-                                            <h3 class="font-semibold text-gray-900 dark:text-white">개인정보 유효기간제</h3>
+                                        <div class="p-3 space-y-2 text-sm text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-700">
+                                            <h3 class="font-semibold">개인정보 유효기간제</h3>
                                             <p>• 2023년9월15일 개인정보보호법 개정에 따라 '개인정보 유효기간제'가 폐지되었습니다.</p>
                                             <p>• 업체 운영방침에 따라 자율적으로 휴면회원 배치 사용여부를 설정할 수 있습니다.</p>
                                             <p>• 1년 이상 미접속자는 휴면회원으로 전화되며, 휴면회원은 SMS/알림톡/이메일 알림을 받지 않습니다.</p>

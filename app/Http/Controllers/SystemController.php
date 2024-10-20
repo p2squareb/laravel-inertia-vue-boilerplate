@@ -45,7 +45,5 @@ class SystemController extends Controller
         ]);
 
         Cache::forget("config.basic");
-
-        //$this->toastSuccess('기본 설정이 변경되었습니다.');
     }
 }

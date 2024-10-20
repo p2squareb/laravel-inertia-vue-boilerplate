@@ -1,8 +1,12 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { Tooltip } from 'floating-vue'
-import type { TooltipPlacement, TooltipStyle, TooltipTrigger } from "@/Components/Tooltip/types";
 import 'floating-vue/dist/style.css'
+import { getTheme } from "@/theme";
+
+export type TooltipPlacement = 'auto' | 'auto-start' | 'auto-end' | 'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'right' | 'right-start' | 'right-end' | 'left' | 'left-start' | 'left-end';
+export type TooltipStyle = 'dark' | 'light';
+export type TooltipTrigger = 'hover' | 'click';
 
 interface TooltipProps {
     placement?: TooltipPlacement
@@ -11,7 +15,7 @@ interface TooltipProps {
 }
 const props = withDefaults(defineProps<TooltipProps>(), {
     placement: 'top',
-    theme: 'dark',
+    theme: getTheme(),
     trigger: 'hover',
 })
 const theme = computed(() => {
@@ -52,7 +56,7 @@ const theme = computed(() => {
 }
 
 .v-popper--theme-tooltip-dark .v-popper__arrow-outer {
-    border-color: #000c;
+    border-color: rgb(55 65 81);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -66,7 +70,7 @@ const theme = computed(() => {
 }
 
 .v-popper--theme-tooltip-light .v-popper__wrapper .v-popper__inner {
-    background: #fff;
+    background: rgb(243 244 246);
     color: black;
     padding: 7px 12px 6px;
     border-radius: 6px;
