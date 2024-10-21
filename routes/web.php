@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SystemController;
+use App\Http\Controllers\UserManageController;
 use App\Http\Controllers\WriteController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -76,20 +77,16 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'admin']], function()
     /** 시스템 설정 */
     Route::get('/system/basic', [SystemController::class, 'basic'])->name('admin.system.basic');
     Route::post('/system/basic', [SystemController::class, 'basicUpdate'])->name('admin.system.basic.update');
-
-
-    /** 시스템 설정 */
-    //Route::get('/system/basic', Basic::class)->name('admin.system.basic');
-    //Route::get('/system/external', External::class)->name('admin.system.external');
-    //Route::get('/system/policy-terms', PolicyTerms::class)->name('admin.system.policy-terms');
+    Route::get('/system/external', [SystemController::class, 'external'])->name('admin.system.external');
+    Route::get('/system/policy-terms', [SystemController::class, 'policy-terms'])->name('admin.system.policy-terms');
 
     /** 회원 */
-    //Route::get('/user/list', UserList::class)->name('admin.user.list');
-    //Route::get('/user/read/{userId}', UserRead::class)->name('admin.user.read');
-    //Route::get('/user/group-list', UserGroupList::class)->name('admin.user.group-list');
-    //Route::get('/user/prohibit-list', UserProhibitList::class)->name('admin.user.prohibit-list');
-    //Route::get('/user/dormant-list', UserDormantList::class)->name('admin.user.dormant-list');
-    //Route::get('/user/withdrawal-list', UserWithdrawalList::class)->name('admin.user.withdrawal-list');
+    Route::get('/user/list', [UserManageController::class, 'list'])->name('admin.user.list');
+    Route::get('/user/read/{userId}', [UserManageController::class, 'read'])->name('admin.user.read');
+    Route::get('/user/group-list', [UserManageController::class, 'groupList'])->name('admin.user.group-list');
+    Route::get('/user/prohibit-list', [UserManageController::class, 'prohibitList'])->name('admin.user.prohibit-list');
+    Route::get('/user/dormant-list', [UserManageController::class, 'dormantList'])->name('admin.user.dormant-list');
+    Route::get('/user/withdrawal-list', [UserManageController::class, 'withdrawalList'])->name('admin.user.withdrawal-list');
 
     /** 포인트 */
     //Route::get('/point/set', PointSet::class)->name('admin.point.set');

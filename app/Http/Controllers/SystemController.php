@@ -46,4 +46,14 @@ class SystemController extends Controller
 
         Cache::forget("config.basic");
     }
+
+    public function external(Request $request): Response
+    {
+        return Inertia::render('Admin/System/External');
+    }
+
+    public function policyTerms(Request $request): Response
+    {
+        return Inertia::render('Admin/System/PolicyTerms');
+    }
 }

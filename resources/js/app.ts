@@ -8,8 +8,10 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import {setThemeOnLoad} from "@/theme";
 import Vue3Toastify, { type ToastContainerOptions } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
+import { createPinia } from 'pinia'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const pinia = createPinia();
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -28,6 +30,7 @@ createInertiaApp({
                     autoClose: 3000,
                 } as ToastContainerOptions,
             )
+            .use(pinia)
             .component('Link', Link)
             .component('Head', Head)
             .mount(el);
