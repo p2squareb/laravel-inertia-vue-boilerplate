@@ -13,6 +13,18 @@ interface SystemBasic {
     }
 }
 
-interface SystemProfile {
-    use_foasdf: number;
+interface SystemExternal {
+    socialLogin: {
+        use_sns: string;
+        google: {
+            client_id: string;
+        };
+    }
+}
+
+interface SystemPolicy {
+    policy: {
+        terms: string;
+        policy: string;
+    }
 }

@@ -49,11 +49,41 @@ class SystemController extends Controller
 
     public function external(Request $request): Response
     {
-        return Inertia::render('Admin/System/External');
+        $external = System::where('title', 'external')->orderByDesc('id')->first();
+        $data = json_decode($external->content);
+
+        return Inertia::render('Admin/System/External', [
+            'data' => $data,
+        ]);
     }
 
     public function policyTerms(Request $request): Response
     {
-        return Inertia::render('Admin/System/PolicyTerms');
+        $policyTerms = System::where('title', 'policy')->orderByDesc('id')->first();
+        $data = json_decode($policyTerms->content);
+
+        return Inertia::render('Admin/System/PolicyTerms', [
+            'data' => $data,
+        ]);
+    }
+
+    public function updatePolicyTerms(Request $request): void
+    {
+        dd($request->all());
+        $configData = [
+            'policy' => [
+                'terms' => $this->terms,
+                'policy' => $this->policy,
+            ],
+        ];
+
+        System::insert([
+            'register_ip' => request()->ip(),
+            'register_id' => 'system',
+            'title' => 'policy',
+            'content' => json_encode($configData),
+        ]);
+
+        Cache::forget("config.policy");
     }
 }

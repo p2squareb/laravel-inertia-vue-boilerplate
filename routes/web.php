@@ -78,7 +78,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'admin']], function()
     Route::get('/system/basic', [SystemController::class, 'basic'])->name('admin.system.basic');
     Route::post('/system/basic', [SystemController::class, 'basicUpdate'])->name('admin.system.basic.update');
     Route::get('/system/external', [SystemController::class, 'external'])->name('admin.system.external');
-    Route::get('/system/policy-terms', [SystemController::class, 'policy-terms'])->name('admin.system.policy-terms');
+    Route::get('/system/policy-terms', [SystemController::class, 'policyTerms'])->name('admin.system.policy-terms');
+    Route::post('/system/policy-terms', [SystemController::class, 'updatePolicyTerms'])->name('admin.system.policy-terms.update');
 
     /** 회원 */
     Route::get('/user/list', [UserManageController::class, 'list'])->name('admin.user.list');

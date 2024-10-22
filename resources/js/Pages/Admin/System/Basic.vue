@@ -153,7 +153,7 @@ const submit = () => {
                 </div>
 
                 <div class="col-span-6 sm:col-full text-right">
-                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-5 py-[7px] text-center dark:bg-blue-600 dark:hover:bg-blue-700">설정 완료</button>
+                    <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-md text-sm px-5 py-[7px] text-center dark:bg-blue-600 dark:hover:bg-blue-700">설정 적용하기</button>
                 </div>
             </form>
         </div>

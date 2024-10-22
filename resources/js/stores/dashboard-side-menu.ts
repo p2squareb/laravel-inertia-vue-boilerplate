@@ -1,22 +1,5 @@
 import { defineStore } from "pinia";
-
-interface MenuItem {
-    icon: string;
-    pageName: string;
-    title: string;
-    link: string;
-    active: boolean;
-    activeDropdownOpen?: boolean;
-    subMenu?: SubMenuItem[]; // 서브메뉴는 선택적으로 존재할 수 있음
-}
-
-interface SubMenuItem {
-    icon: string;
-    pageName: string;
-    title: string;
-    link: string;
-    active: boolean;
-}
+import { MenuItem } from "@/types/side-menu";
 
 export const useDashboardSideMenuStore = defineStore({
     id: "dashboard-side-menu",
@@ -28,7 +11,7 @@ export const useDashboardSideMenuStore = defineStore({
                 title: "대시보드",
                 link: "/admin",
                 active: false,
-                activeDropdownOpen: false,
+                activeDropdown: false,
                 subMenu: [],
             },
             {
@@ -37,7 +20,7 @@ export const useDashboardSideMenuStore = defineStore({
                 title: "시스템 설정",
                 link: "",
                 active: false,
-                activeDropdownOpen: false,
+                activeDropdown: false,
                 subMenu: [
                     {
                         icon: "",
@@ -50,14 +33,14 @@ export const useDashboardSideMenuStore = defineStore({
                         icon: "",
                         pageName: "systems",
                         title: "서비스 약관",
-                        link: "/admin/system/external",
+                        link: "/admin/system/policy-terms",
                         active: false,
                     },
                     {
                         icon: "",
                         pageName: "systems",
                         title: "외부서비스 설정",
-                        link: "/admin/system/policy-terms",
+                        link: "/admin/system/external",
                         active: false,
                     },
                 ],
@@ -68,7 +51,7 @@ export const useDashboardSideMenuStore = defineStore({
                 title: "회원 관리",
                 link: "",
                 active: false,
-                activeDropdownOpen: false,
+                activeDropdown: false,
                 subMenu: [
                     {
                         icon: "",
@@ -113,7 +96,7 @@ export const useDashboardSideMenuStore = defineStore({
                 title: "포인트 관리",
                 link: "",
                 active: false,
-                activeDropdownOpen: false,
+                activeDropdown: false,
                 subMenu: [
                     {
                         icon: "",
@@ -137,7 +120,7 @@ export const useDashboardSideMenuStore = defineStore({
                 title: "게시판 관리",
                 link: "",
                 active: false,
-                activeDropdownOpen: false,
+                activeDropdown: false,
                 subMenu: [
                     {
                         icon: "",
@@ -175,7 +158,7 @@ export const useDashboardSideMenuStore = defineStore({
                 title: "1:1 문의 관리",
                 link: "",
                 active: false,
-                activeDropdownOpen: false,
+                activeDropdown: false,
                 subMenu: [
                     {
                         icon: "",
