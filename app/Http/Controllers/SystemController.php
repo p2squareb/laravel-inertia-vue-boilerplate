@@ -69,11 +69,10 @@ class SystemController extends Controller
 
     public function updatePolicyTerms(Request $request): void
     {
-        dd($request->all());
         $configData = [
             'policy' => [
-                'terms' => $this->terms,
-                'policy' => $this->policy,
+                'terms' => $request->terms,
+                'policy' => $request->policy,
             ],
         ];
 

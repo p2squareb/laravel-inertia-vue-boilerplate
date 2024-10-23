@@ -72,7 +72,7 @@ const submit = () => {
                         </div>
                         <div v-if="policyTermsTab === 'policy'" class="py-4 rounded-md bg-gray-50 dark:bg-gray-800">
                             <label for="policy" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"></label>
-                            <TextEditor v-model="form.terms" :textareaMinHeight="80" />
+                            <TextEditor v-model="form.policy" :textareaMinHeight="80" />
                         </div>
                     </div>
                     <div class="col-span-6 sm:col-full text-right pt-8">
