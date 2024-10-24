@@ -88,6 +88,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web', 'admin']], function()
     Route::get('/user/prohibit-list', [UserManageController::class, 'prohibitList'])->name('admin.user.prohibit-list');
     Route::get('/user/dormant-list', [UserManageController::class, 'dormantList'])->name('admin.user.dormant-list');
     Route::get('/user/withdrawal-list', [UserManageController::class, 'withdrawalList'])->name('admin.user.withdrawal-list');
+    Route::post('/user/change-group', [UserManageController::class, 'changeGroup'])->name('admin.user.changeGroup');
 
     /** 포인트 */
     //Route::get('/point/set', PointSet::class)->name('admin.point.set');

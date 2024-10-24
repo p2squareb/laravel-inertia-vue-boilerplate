@@ -145,4 +145,25 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(BoardComment::class, 'user_id', 'id');
     }
+
+    public function scopeFilter(Builder $query, array $filters): Builder
+    {
+        if ($filters['status'] ?? false) {
+            $query->where('status', $filters['status']);
+        }
+
+        if ($filters['group'] ?? false) {
+            $query->where('group_level', $filters['group']);
+        }
+
+        if ($filters['searchString'] ?? false) {
+            if ($filters['searchKind'] ?? false) {
+                $query->where($filters['searchKind'], 'like', '%'. $filters['searchString']. '%');
+            } else {
+                $query->where('nickname', 'like', '%'. $filters['searchString']. '%')->orWhere('email', 'like', '%'. $filters['searchString']. '%');
+            }
+        }
+
+        return $query;
+    }
 }

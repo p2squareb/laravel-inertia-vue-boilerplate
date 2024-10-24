@@ -3,7 +3,7 @@ import { useForm } from '@inertiajs/vue3';
 import {ref} from "vue";
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Button from '@/Components/Button.vue';
+import ButtonColor from '@/Components/ButtonColor.vue';
 import TextInput from '@/Components/TextInput.vue';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
 import Checkbox from "@/Components/Checkbox.vue";
@@ -80,7 +80,7 @@ const submit = () => {
                         <InputError :message="form.errors.terms" />
                         <InputError :message="form.errors.privacy" />
                     </div>
-                    <Button class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'blue'" :disabled="form.processing">회원가입</Button>
+                    <ButtonColor class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'blue'" :disabled="form.processing">회원가입</ButtonColor>
                     <div class="text-sm font-medium text-gray-500 dark:text-gray-400">
                         이미 계정을 가지고 계신가요? <Link :href="route('login')" class="text-blue-700 hover:underline dark:text-blue-500">로그인하러 가기</Link>
                     </div>

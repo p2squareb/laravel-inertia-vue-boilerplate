@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\System;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Inertia\Middleware;
 
@@ -47,7 +48,7 @@ class HandleInertiaRequests extends Middleware
             'auth.user' => fn () => $request->user()
                 ? $request->user()->only('id', 'name', 'nickname', 'email', 'group_level', 'status', 'profile_photo_path')
                 : null,
-            'point' => auth()->user() ? number_format(auth()->user()->point) : 0,
+            'point' => Auth::user() ? number_format(Auth::user()->point) : 0,
         ]);
     }
 

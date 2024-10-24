@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Button from '@/Components/Button.vue';
+import ButtonColor from '@/Components/ButtonColor.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 
@@ -42,7 +42,7 @@ const form = useForm({
                     </p>
                     <div v-show="status === 'verification-link-sent'" class="mt-2 font-medium text-green-600">이메일 주소로 새로운 인증 링크가 전송되었습니다.</div>
                 </div>
-                <Button class="w-full mt-3 px-5 py-[7px] font-medium text-center" :color="'blue'" :disabled="form.processing">회원정보 수정하기</Button>
+                <ButtonColor class="w-full mt-3 px-5 py-[7px] font-medium text-center" :color="'blue'" :disabled="form.processing">회원정보 수정하기</ButtonColor>
                 <Transition
                     enter-active-class="transition ease-in-out"
                     enter-from-class="opacity-0"

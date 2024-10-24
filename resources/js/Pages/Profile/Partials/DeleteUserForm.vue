@@ -4,7 +4,7 @@ import InputLabel from '@/Components/InputLabel.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 import { nextTick, ref } from 'vue';
-import Button from "@/Components/Button.vue";
+import ButtonColor from "@/Components/ButtonColor.vue";
 import DialogModal from "@/Components/DialogModal.vue";
 
 const confirmingUserDeletion = ref(false);
@@ -46,7 +46,7 @@ const closeModal = () => {
             <div class="-mt-2">
                 <label for="email" class="block font-medium">회원탈퇴시 모든 리소스와 데이터에 접근이 불가능합니다.</label>
             </div>
-            <Button @click="confirmUserDeletion" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'" :disabled="form.processing">회원 탈퇴하기</Button>
+            <ButtonColor @click="confirmUserDeletion" class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'red'" :disabled="form.processing">회원 탈퇴하기</ButtonColor>
             <DialogModal :show="confirmingUserDeletion" :max-width="'md'" @close="closeModal">
                 <div class="p-6 bg-white dark:bg-gray-800">
                     <h2 class="text-lg font-medium">계정을 삭제하시겠습니까?</h2>
@@ -61,8 +61,8 @@ const closeModal = () => {
                         <InputError :message="form.errors.password" class="mt-2" />
                     </div>
                     <div class="mt-6 flex justify-end">
-                        <Button @click="closeModal" class="mt-2 mr-2 px-5 py-[7px] text-sm font-medium text-center" :color="'red'" :disabled="form.processing">취소하기</Button>
-                        <Button @click="deleteUser" class="mt-2 px-5 py-[7px] text-sm font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">삭제하기</Button>
+                        <ButtonColor @click="closeModal" class="mt-2 mr-2 px-5 py-[7px] text-sm font-medium text-center" :color="'red'" :disabled="form.processing">취소하기</ButtonColor>
+                        <ButtonColor @click="deleteUser" class="mt-2 px-5 py-[7px] text-sm font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">삭제하기</ButtonColor>
                     </div>
                 </div>
             </DialogModal>

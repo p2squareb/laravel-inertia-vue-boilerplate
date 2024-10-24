@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Button from '@/Components/Button.vue';
+import ButtonColor from '@/Components/ButtonColor.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { Head, useForm } from '@inertiajs/vue3';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
@@ -49,7 +49,7 @@ const submit = () => {
                             <TextInput type="password" id="password_confirmation" v-model="form.password_confirmation" class="mb-2 block w-full p-[7px]" required placeholder="대문자+숫자 포함 (8~16자)" />
                             <InputError :message="form.errors.password" />
                         </div>
-                        <Button class="w-full mt-3 px-5 py-[7px] font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">비밀번호 재설정</Button>
+                        <ButtonColor class="w-full mt-3 px-5 py-[7px] font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">비밀번호 재설정</ButtonColor>
                     </form>
                 </div>
             </div>

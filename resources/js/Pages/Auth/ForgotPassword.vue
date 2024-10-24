@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import Button from '@/Components/Button.vue';
+import ButtonColor from '@/Components/ButtonColor.vue';
 import TextInput from '@/Components/TextInput.vue';
 import { useForm } from '@inertiajs/vue3';
 import ApplicationLogo from "@/Components/ApplicationLogo.vue";
@@ -36,9 +36,9 @@ const submit = () => {
                             <TextInput type="email" id="email" v-model="form.email" class="block w-full p-[7px]" autofocus required placeholder="이메일을 입력해주세요." />
                             <InputError :message="form.errors.email" />
                         </div>
-                        <Button class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <ButtonColor class="w-full mt-5 px-5 py-[7px] text-base font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             비밀번호 재설정 링크 받기
-                        </Button>
+                        </ButtonColor>
                     </form>
                 </div>
             </div>

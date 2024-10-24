@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ['name' => '최고관리자', 'level' => 99, 'comment' => '최고관리자', 'created_at' => now(), 'updated_at' => now()],
             ['name' => '관리자', 'level' => 11, 'comment' => '관리자', 'created_at' => now(), 'updated_at' => now()],
             ['name' => '일반회원', 'level' => 1, 'comment' => '일반회원', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => '테스트그룹', 'level' => 2, 'comment' => '테스트회원', 'created_at' => now(), 'updated_at' => now()],
         ]);
 
         User::insert([
@@ -59,7 +60,7 @@ class DatabaseSeeder extends Seeder
             'login_ip' => fake()->ipv4(),
         ]);
 
-        //User::factory(100)->create();
+        User::factory(100)->create();
 
         $configData = [
             'socialLogin' => [

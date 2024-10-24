@@ -34,6 +34,8 @@ class UserFactory extends Factory
             'social_type' => 'email',
             'last_login_at' => now(),
             'login_ip' => fake()->ipv4(),
+            'group_level' => fake()->numberBetween(1, 2),
+            'status' => fake()->numberBetween(1, 4),
         ];
     }
 

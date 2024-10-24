@@ -5,7 +5,7 @@ import {useForm} from "@inertiajs/vue3";
 import {notify} from "@/Components/Toastify";
 import {ref} from "vue";
 import TextEditor from "@/Components/TextEditor.vue";
-import Button from "@/Components/Button.vue";
+import ButtonColor from "@/Components/ButtonColor.vue";
 
 
 defineOptions({
@@ -76,9 +76,9 @@ const submit = () => {
                         </div>
                     </div>
                     <div class="col-span-6 sm:col-full text-right pt-8">
-                        <Button class="px-5 py-[7px] text-sm font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                        <ButtonColor class="px-5 py-[7px] text-sm font-medium text-center" :color="'blue'" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             서비스 약관 적용하기
-                        </Button>
+                        </ButtonColor>
                     </div>
                 </div>
             </form>
